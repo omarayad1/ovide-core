@@ -1,0 +1,31 @@
+$date
+	Thu Nov 27 11:01:11 2014
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module alu_tb $end
+$var wire 8 ! r [7:0] $end
+$var wire 1 " z $end
+$var reg 8 # a [7:0] $end
+$var reg 8 $ b [7:0] $end
+$var reg 3 % fn [2:0] $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 %
+b101 $
+b1010 #
+0"
+b1111 !
+$end
+#10
+b101 !
+b1 %
+#20
+b10 %
+#1000

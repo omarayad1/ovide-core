@@ -33,7 +33,7 @@ while( my $line = <$info>)  {
 			print getModName($modDecl) . "\n";
 			$modDecl = "";
 		}
-	}   
+	}
 }
 
 #print $modDecl;
