@@ -39,4 +39,5 @@ fibonacci_rpc = FibonacciRpcClient()
 
 def out_test():
     response = fibonacci_rpc.call("tests/batee5.v")
-    assert response == '%Warning-COMBDLY: tests/batee5.v:8: Delayed assignments (<=) in non-clocked (non flop or latch) block; suggest blocking assignments (=).\n%Warning-COMBDLY: Use "/* verilator lint_off COMBDLY */" and lint_on around source to disable this message.\n%Warning-COMBDLY: *** See the manual before disabling this,\n%Warning-COMBDLY: else you may end up with different sim results.\n%Error: Exiting due to 1 warning(s)\n%Error: Command Failed verilator_bin --lint-only tests/batee5.v\n'
+    print response
+    assert response == 'Warning-COMBDLY: tests/batee5.v:8: Delayed assignments (<=) in non-clocked (non flop or latch) block; suggest blocking assignments (=).\n%Warning-COMBDLY: Use "/* verilator lint_off COMBDLY */" and lint_on around source to disable this message.\n%Warning-COMBDLY: *** See the manual before disabling this,\n%Warning-COMBDLY: else you may end up with different sim results.\n%Error: Exiting due to 1 warning(s)\n%Error: Command Failed verilator_bin --lint-only tests/batee5.v\n'
