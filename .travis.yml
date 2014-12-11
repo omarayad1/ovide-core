@@ -15,6 +15,8 @@ install:
 services:
   - rabbitmq
 
-before_script: python worker.py
+before_script: 
+  - python worker.py &
+  - sleep 1
 
 script: nosetests
