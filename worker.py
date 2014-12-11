@@ -12,16 +12,6 @@ channel.queue_declare(queue='rpc_queue')
 def get_file_link(n):
     return n
 
-
-def fib(n):
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return fib(n-1) + fib(n-2)
-
-
 def check_for_errors(n):
     p = subprocess.Popen(
         ["bin/verilator --lint-only %s" % n],

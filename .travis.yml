@@ -10,7 +10,6 @@ before_install:
   - cd verilog-20141205 && ./configure && make && sudo make install
 
 install:
-  - "pip install ."
   - "pip install -r requirements.txt"
 
 services:
