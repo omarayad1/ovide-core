@@ -4,7 +4,7 @@ python:
   - "2.7"
 
 before_install:
-  - sudo apt-get install -y bison autoconf gpref flex
+  - sudo apt-get install -y bison autoconf flex
   - wget ftp://icarus.com/pub/eda/verilog/snapshots/verilog-20141205.tar.gz
   - tar -zxf verilog-20141205.tar.gz
   - cd verilog-20141205 && ./configure && make && sudo make install
