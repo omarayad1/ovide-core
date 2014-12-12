@@ -1,5 +1,5 @@
 import pika
-import subprocess
+from modules import lint_verilog
 
 connection = pika.BlockingConnection(
     pika.ConnectionParameters(
@@ -12,27 +12,12 @@ channel = connection.channel()
 channel.queue_declare(queue='rpc_queue')
 
 
-def get_file_link(n):
-    return n
-
-
-def check_for_errors(n):
-    p = subprocess.Popen(
-        ["verilator --lint-only %s" % n],
-        stdout=subprocess.PIPE,
-        shell=True,
-        stderr=subprocess.STDOUT
-    )
-    data, err = p.communicate()
-    return data, err
-
-
 def on_request(ch, method, props, body):
     n = body
 
-    print " [.] filename: %s" % n
+    print " [.] function: %s" % n
 
-    response, err = check_for_errors(n)
+    response = eval(n)
 
     ch.basic_publish(
         exchange='',

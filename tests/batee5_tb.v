@@ -19,7 +19,8 @@ module Testbench;
    
    initial
    begin
-
+     $dumpfile("test.vcd");
+     $dumpvars(0,Testbench);
       //case 0
       A_t <= 0; B_t <= 0;
       #1 $display("F_t = %b", F_t);

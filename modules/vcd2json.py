@@ -1,4 +1,4 @@
-from vcdparser import *
+from vcdparser import parse_vcd, get_endtime, get_timescale
 
 
 def vcd2json(filename):
