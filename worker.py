@@ -1,5 +1,5 @@
 import pika
-from modules import lint_verilog
+from modules import lint_verilog, compile_verilog
 
 connection = pika.BlockingConnection(
     pika.ConnectionParameters(

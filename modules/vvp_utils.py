@@ -9,7 +9,8 @@ def get_output(filename):
         shell=True,
         stderr=subprocess.STDOUT
     )
-    return p.split('\n')
+    data, err = p.communicate()
+    return data.split('\n')
 
 
 def get_vcd_filename(filename):

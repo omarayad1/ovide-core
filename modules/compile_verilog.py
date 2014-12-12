@@ -2,14 +2,15 @@ import subprocess
 
 
 def compile_to_vvp(filename, filename_test):
-    c = 'iverilog -o %s.vvp %s %s' % (filename[::-2], filename, filename_test)
+    c = 'iverilog -o %s.vvp %s %s' % (filename[0:-2], filename, filename_test)
     p = subprocess.Popen(
         [c],
         stdout=subprocess.PIPE,
         shell=True,
         stderr=subprocess.STDOUT
     )
-    return __format_error__(p)
+    data, err = p.communicate()
+    return __format_error__(data)
 
 
 def __format_error__(error):
