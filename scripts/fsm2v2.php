@@ -6,15 +6,6 @@
 	+ integrate the in2json script
 
 */
-//$json = '{"nodes":[{"x":390,"y":161,"text":"X","isAcceptState":true},{"x":545,"y":313,"text":"Y","isAcceptState":false},{"x":192,"y":143,"text":"A","isAcceptState":false}],"links":[{"type":"Link","nodeA":0,"nodeB":1,"text":"x/1","lineAngleAdjust":3.141592653589793,"parallelPart":0.6111486407789606,"perpendicularPart":-73.66073757791996},{"type":"Link","nodeA":1,"nodeB":0,"text":"~y/0","lineAngleAdjust":3.141592653589793,"parallelPart":0.4989866989680635,"perpendicularPart":-83.09155144420588},{"type":"SelfLink","node":1,"text":"y/1","anchorAngle":0},{"type":"Link","nodeA":0,"nodeB":2,"text":"~x&y/1","lineAngleAdjust":0,"parallelPart":0.25010079054847584,"perpendicularPart":59.35959838521775},{"type":"Link","nodeA":2,"nodeB":0,"text":"x&y/0","lineAngleAdjust":0,"parallelPart":0.33378870673952643,"perpendicularPart":56.222698292404004},{"type":"Link","nodeA":2,"nodeB":1,"text":"y/0","lineAngleAdjust":0,"parallelPart":0.5220475672436143,"perpendicularPart":141.23961911823463}]}';
-
-//$mod_inputs = '[{"name":"x","size":1,"from":0,"to":0},{"name":"y","size":1,"from":0,"to":0},{"name":"z","size":1,"from":0,"to":0},{"name":"w","size":3,"from":0,"to":2},{"name":"v","size":2,"from":0,"to":1},{"name":"u","size":1,"from":0,"to":0}]';
-
-/*
-
-{"imports": "im", "outports": "out", "data": {"nodes": [{"y": 146, "x": 229, "isAcceptState": false, "text": "\\alpha"}, {"y": 201, "x": 490, "isAcceptState": false, "text": "\\beta"}, {"y": 325, "x": 341, "isAcceptState": false, "text": "C"}, {"y": 375, "x": 556, "isAcceptState": true, "text": "D"}], "links": [{"node": 2, "text": "1", "type": "SelfLink", "anchorAngle": 2.8632929945846817}, {"lineAngleAdjust": 0, "perpendicularPart": 0, "nodeA": 2, "text": "2", "nodeB": 3, "parallelPart": 0.5, "type": "Link"}, {"lineAngleAdjust": 0, "perpendicularPart": 0, "nodeA": 3, "text": "3", "nodeB": 0, "parallelPart": 0.5, "type": "Link"}, {"lineAngleAdjust": 0, "perpendicularPart": 0, "nodeA": 3, "text": "4", "nodeB": 1, "parallelPart": 0.5, "type": "Link"}, {"lineAngleAdjust": 3.141592653589793, "perpendicularPart": -245.86289191364355, "nodeA": 1, "text": "5", "nodeB": 2, "parallelPart": 0.25015301913404475, "type": "Link"}]}, "module_name": "ggg"}
-
-*/
 
 $mod_name = "fsm";			// Verilog module name
 $state_encoding = 2;		// 1-bin, 2-OHE, 3-Gray
@@ -174,20 +165,7 @@ function transition($states, $links, $s)
 	echo "\n";
 }
 
-/*
-function output($states, $links, $s)
-{
-	foreach($links as $link){
-		$pieces = explode("/", $link->text);
-		echo "\n\t\t\tif($pieces[0]) nextstate = `".$states[$next].";";
-	
-	}
-}
-*/
-
-function in2json($fsm_input)
-{
-//	$fsm_input = "x, y, z, w[ 2 : 0] , v [1:0], u ";
+function in2json($fsm_input) {
 	$inputs_obj = json_decode('{"inputs":[{"name":"", "size":0, "from":0, "to":0}]}');
 	$pieces = explode(",",$fsm_input);
 	
@@ -202,9 +180,6 @@ function in2json($fsm_input)
 			$entry->size = 1;
 			$entry->from = 0;
 			$entry->to = 0;
-			
-			//echo " 1 ";
-			//print_r($entry);
 		} else {
 			$ta0 = explode("[", $tmp, 2);
 			$ta1 = explode(":", $ta0[1], 2);
@@ -214,21 +189,12 @@ function in2json($fsm_input)
 			$entry->size = ceil(trim($ta1[0])) - ceil(trim($ta2[0])) + 1;
 			$entry->to = ceil(trim($ta1[0]));
 			$entry->from = ceil(trim($ta2[0]));
-			
-			//echo " 2 ";
 		}
-		//echo "$tmp - " ;
-		//array_push($inputs_obj->inputs,$entry);
 		if($flag == 0) $flag = 1;
 		else $json = $json . ",";
 		$json = $json . json_encode ($entry);
-		//echo "\n";
 	}
 	$json = $json . "]";
-	//echo "\n";
-	//echo $json; 
-	//echo "\n";
 	return $json;
 
 }
-

@@ -36,8 +36,6 @@ while( my $line = <$info>)  {
 	}
 }
 
-#print $modDecl;
-
 #now get the module name
 
 sub getModName{

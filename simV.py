@@ -4,21 +4,6 @@ import subprocess
 from Paths import *
 import datetime
 
-if "check_output" not in dir( subprocess ):
-    def f(*popenargs, **kwargs):
-        if 'stdout' in kwargs:
-            raise ValueError('stdout argument not allowed, it will be overridden.')
-        process = subprocess.Popen(stdout=subprocess.PIPE, *popenargs, **kwargs)
-        output, unused_err = process.communicate()
-        retcode = process.poll()
-        if retcode:
-            cmd = kwargs.get("args")
-            if cmd is None:
-                cmd = popenargs[0]
-            raise subprocess.CalledProcessError(retcode, cmd)
-        return output
-    subprocess.check_output = f
-
 
 def cmdNwait(c):
     try:
@@ -27,13 +12,14 @@ def cmdNwait(c):
         r = ''
     return r
 
-class simV:
+
+class SimV:
                     
     def __init__(self, dotVFile, postfix):
         self.file_location = dotVFile 
         self.temp_file = temp_file + '__' + postfix + '.txt'
-        self.destination_file = destination_file + '__' + postfix  + '.txt'
-        self.compiled_File = compiled_File + '__' + postfix  + '.vvp'
+        self.destination_file = destination_file + '__' + postfix + '.txt'
+        self.compiled_File = compiled_File + '__' + postfix + '.vvp'
         self.jsontemp_file = jsontemp_file + '__' + postfix + '.txt'
 
     def buildV(self, directory=''):
@@ -78,7 +64,7 @@ class simV:
         x = z.read()
         z.close()
         z = open(APP_ROOT + 'csce495one/static/commands.html', 'w')
-        x = (datetime.datetime.now()+datetime.timedelta(minutes=480)).strftime("%I:%M:%S %p")+ ' ' + str(errorsString) + '<br/>' + x
+        x = (datetime.datetime.now()+datetime.timedelta(minutes=480)).strftime("%I:%M:%S %p") + ' ' + str(errorsString) + '<br/>' + x
         z.write(x)
         z.close()
         return formatted
@@ -132,8 +118,7 @@ class simV:
     def getJson(self):
         if self.generateVCD():
             c = PERLPATH + "  " + Pscript + self.abs_vcd_file + ' > ' + self.jsontemp_file
-            #print c
-            
+
             p = cmdNwait(c)
             o = open(self.jsontemp_file, 'r')
             d = o.read()

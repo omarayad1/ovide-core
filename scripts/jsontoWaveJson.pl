@@ -17,8 +17,6 @@ my $i = 1;
 my $time = 0;
 my $endtime = get_endtime();
 
-#print "End Time: $endtime";
-
 print "{signal: [\n";
 
 for my $code (keys %{ $vcd }) {
