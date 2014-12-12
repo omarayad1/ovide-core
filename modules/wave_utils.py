@@ -1,7 +1,7 @@
 from vcdparser import parse_vcd, get_endtime, get_timescale
 
 
-def vcd2json(filename):
+def get_wave(filename):
     vcd = parse_vcd(filename)
     units = get_timescale()
     i = 0

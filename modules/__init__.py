@@ -1,1 +1,1 @@
-__all__ = ["lint_verilog", "vcd2json"]
+__all__ = ["lint_verilog", "compile_verilog", "vvp_utils", "wave_utils"]
