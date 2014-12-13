@@ -2,12 +2,14 @@
 
 import pika
 import uuid
+import os
 
 
 class TestingRpcClient(object):
     def __init__(self):
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(
-            host='localhost'))
+        self.connection = pika.BlockingConnection(
+            pika.URLParameters(os.environ["RABBIT_URL"])
+        )
         self.response = None
         self.corr_id = None
         self.channel = self.connection.channel()

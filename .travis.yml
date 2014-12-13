@@ -1,26 +1,33 @@
 language: python
 python:
-  - "2.6"
-  - "2.7"
-
+- '2.6'
+- '2.7'
 before_install:
-  - sudo apt-get install -y bison autoconf flex gperf
-  - if [ ! -d 'verilog-20141205' ]; then wget ftp://icarus.com/pub/eda/verilog/snapshots/verilog-20141205.tar.gz && tar -zxf verilog-20141205.tar.gz && cd verilog-20141205 && ./configure && make && sudo make install && cd ../; else cd verilog-20141205 && sudo make install && cd ../; fi
-  - if [ ! -d 'verilator-3.866' ]; then wget http://www.veripool.org/ftp/verilator-3.866.tgz && tar -zxf verilator-3.866.tgz && cd verilator-3.866 && ./configure && make && sudo make install && cd ../; else cd verilator-3.866 && sudo make install && cd ../; fi
-
+- sudo apt-get install -y bison autoconf flex gperf
+- if [ ! -d 'verilog-20141205' ]; then wget ftp://icarus.com/pub/eda/verilog/snapshots/verilog-20141205.tar.gz
+  && tar -zxf verilog-20141205.tar.gz && cd verilog-20141205 && ./configure && make
+  && sudo make install && cd ../; else cd verilog-20141205 && sudo make install &&
+  cd ../; fi
+- if [ ! -d 'verilator-3.866' ]; then wget http://www.veripool.org/ftp/verilator-3.866.tgz
+  && tar -zxf verilator-3.866.tgz && cd verilator-3.866 && ./configure && make &&
+  sudo make install && cd ../; else cd verilator-3.866 && sudo make install && cd
+  ../; fi
 install:
-  - "pip install -r requirements.txt"
-
+- pip install -r requirements.txt
 services:
-  - rabbitmq
-
-before_script: 
-  - python worker.py &
-  - sleep 1
-
+- rabbitmq
+before_script:
+- python worker.py &
+- sleep 1
 cache:
   directories:
   - verilator-3.866
   - verilog-20141205
-
 script: nosetests
+deploy:
+  provider: heroku
+  api_key:
+    secure: UxbIkMxLDPELsphD5f4Ywm/n8c0lGVA9SNQRzW30e5YKPrFhBICKizzHhB6DMYevvVCgCC7s6F/hIqbtHyg3W1RBePc26ckJ02IFfzb2PAIQVOhQFi+Mrix84zz8KuGf+NmO9RoE0LvfXvb1CgrhKolAsuUfHtNpdFag03o5m/c=
+  app: ovide-core
+  on:
+    repo: omarayad1/ovide-core

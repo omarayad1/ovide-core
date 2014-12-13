@@ -1,10 +1,9 @@
 import pika
 from modules import lint_verilog, compile_verilog, vvp_utils, wave_utils
+import os
 
 connection = pika.BlockingConnection(
-    pika.ConnectionParameters(
-        host='localhost'
-    )
+    pika.URLParameters(os.environ["RABBIT_URL"])
 )
 
 channel = connection.channel()
