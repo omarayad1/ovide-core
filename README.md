@@ -1,6 +1,6 @@
 # Ovide Core
 
-[![Build Status](https://travis-ci.org/omarayad1/ovide-core.svg?branch=master)](https://travis-ci.org/omarayad1/ovide-core)
+[![Build Status](https://magnum.travis-ci.com/omarayad1/ovide-core.svg?token=8Fpim8KSTcqEV6F4gkPX)](https://magnum.travis-ci.com/omarayad1/ovide-core)
 
 Core module of the ovide simulator, it contains shared modules among other Ovide applications
 

@@ -27,7 +27,7 @@ script: nosetests
 deploy:
   provider: heroku
   api_key:
-    secure: UxbIkMxLDPELsphD5f4Ywm/n8c0lGVA9SNQRzW30e5YKPrFhBICKizzHhB6DMYevvVCgCC7s6F/hIqbtHyg3W1RBePc26ckJ02IFfzb2PAIQVOhQFi+Mrix84zz8KuGf+NmO9RoE0LvfXvb1CgrhKolAsuUfHtNpdFag03o5m/c=
+    secure: UWplRF/TXudUUl49f1OB0j0QaDb3H936+bE0Tbt9VfuVA7W4XKxzEnoW6CmOQhYCqYa6EjEFHcqo6rVxsyVB4m6VQFoVpq2uFnP+RIPG3LmVU7RgNmmKFJQc/QGhDo023dtMS+qs8PFRNb33NkCCAfdM6OzbIPe+/tcAZIKULFI=
   app: ovide-core
   on:
     repo: omarayad1/ovide-core
