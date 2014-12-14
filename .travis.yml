@@ -7,27 +7,27 @@ before_install:
 - ls
 - if [ ! -d 'flex-2.5.39' ]; then wget http://garr.dl.sourceforge.net/project/flex/flex-2.5.39.tar.bz2
   && tar -jxf flex-2.5.39.tar.bz2 && cd flex-2.5.39 && ./configure --prefix=/home/travis/vendor && make
-  && make install && cd ../; else cd flex-2.5.39 && sudo make install &&
+  && make install && cd ../; else cd flex-2.5.39 && make install &&
   cd ../; fi
 - if [ ! -d 'gperf-3.0.4'] then wget http://ftp.gnu.org/pub/gnu/gperf/gperf-3.0.4.tar.gz
   && tar -zxf gperf-3.0.4.tar.gz && cd gperf-3.0.4 && ./configure --prefix=/home/travis/vendor && make
-  && make install && cd ../; else cd gperf-3.0.4 && sudo make install &&
+  && make install && cd ../; else cd gperf-3.0.4 && make install &&
   cd ../; fi
 - if [ ! -d 'bison-3.0.2' ]; then wget ftp://ftp.gnu.org/gnu/bison/bison-3.0.2.tar.gz
   && tar -zxf bison-3.0.2.tar.gz && cd bison-3.0.2 && ./configure --prefix=/home/travis/vendor && make
-  && make install && cd ../; else cd bison-3.0.2 && sudo make install &&
+  && make install && cd ../; else cd bison-3.0.2 && make install &&
   cd ../; fi
 - if [ ! -d 'autoconf-latest' ]; then wget ftp://ftp.gnu.org/gnu/autoconf/autoconf-latest.tar.gz
   && tar -zxf autoconf-latest.tar.gz && cd autoconf-latest && ./configure --prefix=/home/travis/vendor && make
-  && make install && cd ../; else cd autoconf-latest && sudo make install &&
+  && make install && cd ../; else cd autoconf-latest && make install &&
   cd ../; fi
 - if [ ! -d 'verilog-20141205' ]; then wget ftp://icarus.com/pub/eda/verilog/snapshots/verilog-20141205.tar.gz
   && tar -zxf verilog-20141205.tar.gz && cd verilog-20141205 && ./configure --prefix=/home/travis/vendor && make
-  && make install && cd ../; else cd verilog-20141205 && sudo make install &&
+  && make install && cd ../; else cd verilog-20141205 && make install &&
   cd ../; fi
 - if [ ! -d 'verilator-3.866' ]; then wget http://www.veripool.org/ftp/verilator-3.866.tgz
   && tar -zxf verilator-3.866.tgz && cd verilator-3.866 && ./configure --prefix=/home/travis/vendor && make &&
-  make install && cd ../; else cd verilator-3.866 && sudo make install && cd
+  make install && cd ../; else cd verilator-3.866 && make install && cd
   ../; fi
 install:
 - pip install -r requirements.txt
