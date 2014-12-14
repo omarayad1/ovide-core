@@ -36,14 +36,14 @@ services:
 before_script:
 - python worker.py &
 - sleep 1
-cache:
-  directories:
-  - verilator-3.866
-  - verilog-20141205
-  - flex-2.5.39
-  - gperf-3.0.4
-  - bison-3.0.2
-  - autoconf-latest
+#cache:
+#  directories:
+#  - verilator-3.866
+#  - verilog-20141205
+#  - flex-2.5.39
+#  - gperf-3.0.4
+#  - bison-3.0.2
+#  - autoconf-latest
 script: nosetests
 deploy:
   provider: heroku
