@@ -5,12 +5,30 @@ python:
 before_install:
 - export PATH="$PATH:/home/travis/vendor/bin"
 - ls
-- if [ ! -d 'flex-2.5.39' ]; then wget http://garr.dl.sourceforge.net/project/flex/flex-2.5.39.tar.bz2 && tar -jxf flex-2.5.39.tar.bz2 && cd flex-2.5.39 && ./configure --prefix=/home/travis/vendor && make && make install && cd ../; else cd flex-2.5.39 && make install && cd ../; fi
-- if [ ! -d 'gperf-3.0.4' ]; then wget http://ftp.gnu.org/pub/gnu/gperf/gperf-3.0.4.tar.gz && tar -zxf gperf-3.0.4.tar.gz && cd gperf-3.0.4 && ./configure --prefix=/home/travis/vendor && make && make install && cd ../; else cd gperf-3.0.4 && make install && cd ../; fi
-- if [ ! -d 'bison-3.0.2' ]; then wget ftp://ftp.gnu.org/gnu/bison/bison-3.0.2.tar.gz && tar -zxf bison-3.0.2.tar.gz && cd bison-3.0.2 && ./configure --prefix=/home/travis/vendor && make && make install && cd ../; else cd bison-3.0.2 && make install && cd ../; fi
-- if [ ! -d 'autoconf-2.69' ]; then wget ftp://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz && tar -zxf autoconf-2.69.tar.gz && cd autoconf-2.69 && ./configure --prefix=/home/travis/vendor && make && make install && cd ../; else cd autoconf-2.69 && make install && cd ../; fi
-- if [ ! -d 'verilog-20141205' ]; then wget ftp://icarus.com/pub/eda/verilog/snapshots/verilog-20141205.tar.gz && tar -zxf verilog-20141205.tar.gz && cd verilog-20141205 && ./configure --prefix=/home/travis/vendor && make && make install && cd ../; else cd verilog-20141205 && make install && cd ../; fi
-- if [ ! -d 'verilator-3.866' ]; then wget http://www.veripool.org/ftp/verilator-3.866.tgz && tar -zxf verilator-3.866.tgz && cd verilator-3.866 && ./configure --prefix=/home/travis/vendor && make && make install && cd ../; else cd verilator-3.866 && make install && cd ../; fi
+- if [ ! -d 'flex-2.5.39' ]; then wget http://garr.dl.sourceforge.net/project/flex/flex-2.5.39.tar.bz2
+  && tar -jxf flex-2.5.39.tar.bz2 && cd flex-2.5.39 && ./configure --prefix=/home/travis/vendor
+  && make && make install && cd ../; else cd flex-2.5.39 && make install && cd ../;
+  fi
+- if [ ! -d 'gperf-3.0.4' ]; then wget http://ftp.gnu.org/pub/gnu/gperf/gperf-3.0.4.tar.gz
+  && tar -zxf gperf-3.0.4.tar.gz && cd gperf-3.0.4 && ./configure --prefix=/home/travis/vendor
+  && make && make install && cd ../; else cd gperf-3.0.4 && make install && cd ../;
+  fi
+- if [ ! -d 'bison-3.0.2' ]; then wget ftp://ftp.gnu.org/gnu/bison/bison-3.0.2.tar.gz
+  && tar -zxf bison-3.0.2.tar.gz && cd bison-3.0.2 && ./configure --prefix=/home/travis/vendor
+  && make && make install && cd ../; else cd bison-3.0.2 && make install && cd ../;
+  fi
+- if [ ! -d 'autoconf-2.69' ]; then wget ftp://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz
+  && tar -zxf autoconf-2.69.tar.gz && cd autoconf-2.69 && ./configure --prefix=/home/travis/vendor
+  && make && make install && cd ../; else cd autoconf-2.69 && make install && cd ../;
+  fi
+- if [ ! -d 'verilog-20141205' ]; then wget ftp://icarus.com/pub/eda/verilog/snapshots/verilog-20141205.tar.gz
+  && tar -zxf verilog-20141205.tar.gz && cd verilog-20141205 && ./configure --prefix=/home/travis/vendor
+  && make && make install && cd ../; else cd verilog-20141205 && make install && cd
+  ../; fi
+- if [ ! -d 'verilator-3.866' ]; then wget http://www.veripool.org/ftp/verilator-3.866.tgz
+  && tar -zxf verilator-3.866.tgz && cd verilator-3.866 && ./configure --prefix=/home/travis/vendor
+  && make && make install && cd ../; else cd verilator-3.866 && make install && cd
+  ../; fi
 install:
 - pip install -r requirements.txt
 services:
@@ -18,19 +36,19 @@ services:
 before_script:
 - python worker.py &
 - sleep 1
-#cache:
-#  directories:
-#  - verilator-3.866
-#  - verilog-20141205
-#  - flex-2.5.39
-#  - gperf-3.0.4
-#  - bison-3.0.2
-#  - autoconf-2.69
+cache:
+  directories:
+  - verilator-3.866
+  - verilog-20141205
+  - flex-2.5.39
+  - gperf-3.0.4
+  - bison-3.0.2
+  - autoconf-2.69
 script: nosetests
 deploy:
   provider: heroku
   api_key:
-    secure: UWplRF/TXudUUl49f1OB0j0QaDb3H936+bE0Tbt9VfuVA7W4XKxzEnoW6CmOQhYCqYa6EjEFHcqo6rVxsyVB4m6VQFoVpq2uFnP+RIPG3LmVU7RgNmmKFJQc/QGhDo023dtMS+qs8PFRNb33NkCCAfdM6OzbIPe+/tcAZIKULFI=
+    secure: K0z24rDxE3kAYxTaZt62H75m1LPTQ1Y1+xAZT8DtJ2mYS+lK15adQNV3g6SGeOSuM0oYbyol9vCaZYjyi1fn9c5LYn40pNBqpOuPCsFZYeL0yGRZDtVy8zj9L0oe9G/Kid2+GrHTiCmJsZsalatI51/Vq/boBCqklGcF9YLpXyI=
   app: ovide-core
   on:
     repo: omarayad1/ovide-core
