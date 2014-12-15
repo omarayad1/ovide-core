@@ -13,4 +13,4 @@ def check_wave_length_test():
 def check_wave_content_test():
     response = test_rpc.call("vvp_utils.get_wave('test.vcd')")
     print response
-    assert eval(response)["signals"][0]["wave"] == [[0, '1'], [3000, '0']]
+    assert len(eval(response)["signals"]) == 3
