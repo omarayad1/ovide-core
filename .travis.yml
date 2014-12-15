@@ -37,3 +37,10 @@ before_script:
 - python worker.py &
 - sleep 1
 script: nosetests
+deploy:
+  provider: heroku
+  api_key:
+    secure: AUl5il3/k9myPlcNKyAVcoc4Oo15ehrxBf307Er58MrWYleAvj00NkLqkk3zXGiqR/R6IxBud/t6HWKAzSh9RE+y6aDK/lDR9ehns0wH6ygpHiP5bHJUAiooEtwozh0TLYyofUyZvbAwK4z6YQwfLBaO41JaR3/HfNxUgaLB7Is=
+  app: ovide-core
+  on:
+    repo: omarayad1/ovide-core
