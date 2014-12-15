@@ -25,8 +25,7 @@ def __upload_dump_files__(filename):
 def __get_vcd_filename__(filename):
     ftp_utils.download_file_to_tmp(filename)
     verilog_file_data = open("./tmp/%s" % filename, 'r').read()
-    vcd_file_name = verilog_file_data.split('"$dumpfile"')[1].split('";')[0]
-    vcd_file_name = vcd_file_name[vcd_file_name.find('"')+1::]
+    vcd_file_name = verilog_file_data.split('"$dumpfile"')[1].split('"')[1]
 
     return vcd_file_name
 
