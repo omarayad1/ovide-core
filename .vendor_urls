@@ -1,1 +1,1 @@
-ftp://$FTP_USERNAME:$FTP_PASSWORD@FTP_HOST/vendor.tar.gz
+ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_HOST/vendor.tar.gz
