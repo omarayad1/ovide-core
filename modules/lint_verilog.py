@@ -1,9 +1,10 @@
 import subprocess
-
+import ftp_utils
 
 def check_for_errors(filename):
+    ftp_utils.download_file_to_tmp(filename)
     p = subprocess.Popen(
-        ["verilator --lint-only %s" % filename],
+        ["verilator --lint-only ./tmp/%s" % filename],
         stdout=subprocess.PIPE,
         shell=True,
         stderr=subprocess.STDOUT

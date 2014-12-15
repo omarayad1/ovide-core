@@ -3,10 +3,12 @@ import re
 global timescale
 global endtime
 
+
 def croak(*args):
-  """Function similar to Perl's Carp::croak, to simplify porting this code"""
-  a = "".join(args)
-  raise Exception(a)
+    # Function similar to Perl's Carp::croak, to simplify porting this code
+    a = "".join(args)
+    raise Exception(a)
+
 
 def list_sigs(file):
     """Parse input VCD file into data structure, 

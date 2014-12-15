@@ -6,10 +6,6 @@ test_rpc = TestingRpcClient()
 
 
 def compile_verilog_test():
-    response = test_rpc.call('compile_verilog.compile_to_vvp("tests/batee5.v", "tests/batee5_tb.v")')
+    response = test_rpc.call('compile_verilog.compile_to_vvp("batee5.v", "batee5_tb.v")')
     print response
     assert eval(response) == []
-
-
-def check_for_vvp_file_test():
-    assert "batee5.vvp" in listdir('tests')
