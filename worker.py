@@ -1,6 +1,9 @@
 import pika
-from modules import lint_verilog, compile_verilog, vvp_utils, wave_utils
+from modules import lint_verilog, compile_verilog, vvp_utils
 import os
+
+if not os.path.exists('./tmp'):
+    os.makedirs('./tmp')
 
 connection = pika.BlockingConnection(
     pika.URLParameters(os.environ["RABBIT_URL"])
@@ -15,12 +18,8 @@ def on_request(ch, method, props, body):
     n = body
 
     print " [.] function: %s" % n
-    try:
-        response = eval(n)
-    except NameError:
-        response = "Invalid Function"
-    except IOError:
-        response = "Invalid File"
+
+    response = eval(n)
     ch.basic_publish(
         exchange='',
         routing_key=props.reply_to,
