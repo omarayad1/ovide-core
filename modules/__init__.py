@@ -1,1 +1,1 @@
-__all__ = ["lint_verilog", "compile_verilog", "vvp_utils"]
+__all__ = ["lint_verilog", "compile_verilog", "vvp_utils", "generate_testbench"]

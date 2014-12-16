@@ -1,5 +1,5 @@
 import pika
-from modules import lint_verilog, compile_verilog, vvp_utils
+from modules import lint_verilog, compile_verilog, vvp_utils, generate_testbench
 import os
 
 if not os.path.exists('./tmp'):
