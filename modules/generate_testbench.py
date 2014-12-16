@@ -36,8 +36,6 @@ def generate_testbench(filename):
     modname = get_module_name(module)
     tbmodname = modname + "_tb"
 
-    clk = "clk"
-    rst = "rst"
     period = 3
 
     timescale = 1  # getTs(module)
@@ -49,6 +47,8 @@ def generate_testbench(filename):
 
     regs = get_regs(module)
     wires = get_wires(module)
+    clk = "clk" if "clk" in wires else ""
+    rst = "rst" if "rst" in wires else ""
 
     for i in regs:
         out += "reg " + i + "; \n"
