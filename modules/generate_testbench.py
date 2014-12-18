@@ -1,5 +1,9 @@
 import ftp_utils
 
+def get_timescale(s):
+    aa = s.split()
+    word = aa[aa.index('`timescale') + 1]
+    return word.split('(')[0]
 
 def get_module_name(s):
     aa = s.split()
@@ -40,11 +44,11 @@ def generate_testbench(filename):
     rst = "rst"
     period = 3
 
-    timescale = 1  # getTs(module)
+    timescale = getTs(module)
 
     out += "// Automatically Generated Testbench for module " + modname + "\n"
     out += "// Generated on  \n"
-    out += "`timescale " + str(timescale) + "ns/1ns \n \n"
+    out += "`timescale " + timescale + "\n \n"
     out += "module " + tbmodname + "; \n \n"
 
     regs = get_regs(module)
