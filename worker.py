@@ -1,6 +1,7 @@
 import pika
 from modules import lint_verilog, compile_verilog, vvp_utils, generate_testbench
 import os
+import json
 
 if not os.path.exists('./tmp'):
     os.makedirs('./tmp')
@@ -20,16 +21,18 @@ def on_request(ch, method, props, body):
     print " [.] function: %s" % n
 
     response = eval(n)
+    print " [x] evaluated: %s" % n
     ch.basic_publish(
         exchange='',
         routing_key=props.reply_to,
         properties=pika.BasicProperties(
             correlation_id=props.correlation_id
         ),
-        body=str(response)
+        body=json.dumps(response)
     )
+    print " [x] Published"
     ch.basic_ack(delivery_tag=method.delivery_tag)
-
+    print " [x] ACK"
 channel.basic_qos(prefetch_count=1)
 channel.basic_consume(on_request, queue='rpc_queue')
 

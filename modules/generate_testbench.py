@@ -73,7 +73,7 @@ def generate_testbench(filename):
 
     out += "initial begin \n"
     out += "$dumpfile (" + '"' + tbmodname + ".vcd" + '"' + "); \n"
-    out += "$dumpvars (1, " + tbmodname + ".v); \n"
+    out += "$dumpvars (1, " + tbmodname + "); \n"
     out += "#1000 $finish; \n"
     out += "end\n \n"
 
