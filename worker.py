@@ -1,5 +1,5 @@
 import pika
-from modules import lint_verilog, compile_verilog, vvp_utils, generate_testbench
+from modules import *
 import os
 import json
 

@@ -42,9 +42,37 @@ Then run:
 nosetests
 ```
 
+# Module Structure
+
+```
+modules
+|
+├───compile_verilog 
+│		├───compile_to_vvp(filename, filename_test)
+│	 
+│
+├───generate_testbench
+│		├───generate_testbench(filename)
+│
+│
+├───lint_verilog
+│		├───check_for_errors(filename)
+│
+│
+├───vcdparser
+│		├───parse_vcd(file, only_sigs=0, use_stdout=0, siglist=[], opt_timescale='')
+│
+│
+├───vvp_utils
+│		├───get_output(filename)
+│		│
+│		├───get_wave(filename)
+
+```
+
 
 # Adding Features
-To add more features to the Ovide Core, simply write the Python module for the required feature as its respective function and place it in the modules folder.
+To add more features to the Ovide Core, simply write the Python module for the required feature as its respective function and place it in the modules folder. Then, add the new Python module in the __init__.py file in modules/.
 
 However, don't forget to edit the routing in the API server to reference this new module.
 Also, if possible add a Python module in the tests folder for the newly added feature.
