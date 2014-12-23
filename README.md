@@ -4,16 +4,23 @@
 
 Core module of the ovide simulator, it contains shared modules among other Ovide applications
 
-## Dependencies
-Python 2.7 and RabbitMQ are needed to run the application. 
 
-## Building & Running
+# Building & Running
+
+## Dependencies
+Python 2.7 and RabbitMQ are needed to run the application.
+Install Pika:
+```
+pip install pika
+```
+
 A shell script is used to retrieve and build the needed dependencies:
 ```
 chmod +x build-deps.sh
 ./build-deps.sh
 ```
 
+## Running
 Server can be started by running:
 ```
 python worker.py
@@ -26,11 +33,21 @@ python clear_queue.py
 
 
 ## Running Tests
+To run the tests, make sure you have nose installed:
+```
+pip install nose
+```
+Then run:
+```
+nosetests
+```
 
 
-## Adding Features
+# Adding Features
 To add more features to the Ovide Core, simply write the Python module for the required feature as its respective function and place it in the modules folder.
-However, don't forget to edit the routing in the API server to reference this new module.
 
-## License
+However, don't forget to edit the routing in the API server to reference this new module.
+Also, if possible add a Python module in the tests folder for the newly added feature.
+
+# License
 See LICENSE
