@@ -51,3 +51,7 @@ Also, if possible add a Python module in the tests folder for the newly added fe
 
 # License
 See LICENSE
+
+# Roadmap
+- Improve automatically generated testbench
+- Move from FTP to a more suitable storage solution
