@@ -19,8 +19,10 @@ def on_request(ch, method, props, body):
     n = body
 
     print " [.] function: %s" % n
-
-    response = eval(n)
+    try:
+        response = eval(n)
+    except:
+        response = "There was an unidentified error on our side we are working on fixing it"
     print " [x] evaluated: %s" % n
     ch.basic_publish(
         exchange='',
