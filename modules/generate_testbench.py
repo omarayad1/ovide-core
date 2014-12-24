@@ -42,7 +42,7 @@ def generate_testbench(filename):
 
     period = 3
 
-    timescale = getTs(module)
+    timescale = get_timescale(module)
 
     out += "// Automatically Generated Testbench for module " + modname + "\n"
     out += "// Generated on  \n"
