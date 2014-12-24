@@ -4,7 +4,7 @@
 
 Core module of the ovide simulator, it contains shared modules among other Ovide applications
 
-The main worker is currently running on ![A Heroku Dyno](http://ovide-core.herokuapp.com)
+The main worker is currently running on [A Heroku Dyno](http://ovide-core.herokuapp.com)
 
 # Building & Running
 
