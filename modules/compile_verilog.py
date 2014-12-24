@@ -14,8 +14,10 @@ def compile_to_vvp(filename, filename_test):
     )
 
     data, err = p.communicate()
-    ftp_utils.upload_file_from_tmp('%s.vvp' % filename[0:-2])
-    return __format_error__(data)
+    if __format_error__(data) != []:
+        return __format_error__(data)
+    else:
+        ftp_utils.upload_file_from_tmp('%s.vvp' % filename[0:-2])
 
 
 def __format_error__(error):

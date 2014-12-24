@@ -4,6 +4,7 @@
 
 Core module of the ovide simulator, it contains shared modules among other Ovide applications
 
+The main worker is currently running on ![A Heroku Dyno](http://ovide-core.herokuapp.com)
 
 # Building & Running
 
@@ -75,7 +76,7 @@ modules
 To add more features to the Ovide Core, simply write the Python module for the required feature as its respective function and place it in the modules folder. Then, add the new Python module in the __init__.py file in modules/.
 
 However, don't forget to edit the routing in the API server to reference this new module.
-Also, if possible add a Python module in the tests folder for the newly added feature.
+Also, if possible add a Python Unit Test in the tests folder for the newly added feature.
 
 # License
 See LICENSE
@@ -83,3 +84,4 @@ See LICENSE
 # Roadmap
 - Improve automatically generated testbench
 - Move from FTP to a more suitable storage solution
+- For other suggested features see Ovide-web repo
