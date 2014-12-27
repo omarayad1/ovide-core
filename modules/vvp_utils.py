@@ -31,9 +31,10 @@ def __get_vcd_filename__(filename):
 
 
 def get_output(filename):
-    __check_if_dumps_vcd_correctly__(filename)
-    ftp_utils.download_file_to_tmp(filename)
-    c = 'vvp ./tmp/%s' % filename
+    vvp_filename = '%s.vvp' % filename[0:-2]
+    __check_if_dumps_vcd_correctly__(vvp_filename)
+    ftp_utils.download_file_to_tmp(vvp_filename)
+    c = 'vvp ./tmp/%s' % vvp_filename
     p = subprocess.Popen(
         [c],
         stdout=subprocess.PIPE,
@@ -41,18 +42,19 @@ def get_output(filename):
         stderr=subprocess.STDOUT
     )
     data, err = p.communicate()
-    __upload_dump_files__(filename)
+    __upload_dump_files__(vvp_filename)
     return data.split('\n')
 
 
 def get_wave(filename):
-    ftp_utils.download_file_to_tmp(filename)
-    vcd = parse_vcd("./tmp/%s" % filename)
+    vcd_filename = __get_vcd_filename__('%s.vvp' % filename[0:-2])
+    ftp_utils.download_file_to_tmp(vcd_filename)
+    vcd = parse_vcd("./tmp/%s" % vcd_filename)
     units = get_timescale()
     i = 0
     time = 0
     endtime = get_endtime()
-    data = {'file': filename, 'scale': units, 'endtime': endtime, 'signals': []}
+    data = {'file': vcd_filename, 'scale': units, 'endtime': endtime, 'signals': []}
     for key, value in vcd.iteritems():
         name = value['nets'][0]['hier'] + "." + value['nets'][0]['name']
         size = value['nets'][0]['size']
