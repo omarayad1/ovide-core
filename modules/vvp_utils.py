@@ -5,31 +5,30 @@ from vcdparser import parse_vcd, get_endtime, get_timescale
 
 def __check_if_dumps_vcd_correctly__(filename):
     ftp_utils.download_file_to_tmp(filename)
-    try:
-        vcd_name = __get_vcd_filename__(filename)
-    except IndexError:
-        return 0
-    if vcd_name.find("./tmp/") < 0:
-        file_instance = open('./tmp/%s' % filename, 'r+')
-        data = file_instance.read()
-        data = data.replace('"$dumpfile", "', '"$dumpfile", "./tmp/', 1)
-        file_instance.seek(0)
-        file_instance.write(data)
-        file_instance.close()
-    ftp_utils.upload_file_from_tmp(filename)
-
+    vcd_name = __get_vcd_filename__(filename)
+    if vcd_name != None:
+        if vcd_name.find("./tmp/") < 0:
+            file_instance = open('./tmp/%s' % filename, 'r+')
+            data = file_instance.read()
+            data = data.replace('"$dumpfile", "', '"$dumpfile", "./tmp/', 1)
+            file_instance.seek(0)
+            file_instance.write(data)
+            file_instance.close()
+        ftp_utils.upload_file_from_tmp(filename)
 
 def __upload_dump_files__(filename):
     vcd_name = __get_vcd_filename__(filename)
-    if vcd_name != -1:
+    if vcd_name != None:
         ftp_utils.upload_file_from_tmp(vcd_name.replace('./tmp/', ''))
 
 
 def __get_vcd_filename__(filename):
     ftp_utils.download_file_to_tmp(filename)
     verilog_file_data = open("./tmp/%s" % filename, 'r').read()
-    vcd_file_name = verilog_file_data.split('"$dumpfile"')[1].split('"')[1]
-
+    try:
+        vcd_file_name = verilog_file_data.split('"$dumpfile"')[1].split('"')[1]
+    except IndexError:
+        vcd_file_name = None
     return vcd_file_name
 
 
