@@ -5,7 +5,10 @@ from vcdparser import parse_vcd, get_endtime, get_timescale
 
 def __check_if_dumps_vcd_correctly__(filename):
     ftp_utils.download_file_to_tmp(filename)
-    vcd_name = __get_vcd_filename__(filename)
+    try:
+        vcd_name = __get_vcd_filename__(filename)
+    except IndexError:
+        return 0
     if vcd_name.find("./tmp/") < 0:
         file_instance = open('./tmp/%s' % filename, 'r+')
         data = file_instance.read()
